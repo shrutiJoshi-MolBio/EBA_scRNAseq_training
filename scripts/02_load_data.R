@@ -60,17 +60,17 @@ counts[202, 1]
 
 #Create first Seurat object
 
-spleen <- CreateSeuratObject(
-  counts = counts,
-  project = "Saline3"
-)
+#spleen <- CreateSeuratObject(
+ # counts = counts,
+  #project = "Saline3"
+#)
 
 # got error with duplicate names- check why and debug
 anyDuplicated(rownames(counts))
 head(rownames(counts)[duplicated(rownames(counts))], 20)
 counts <- counts[!duplicated(rownames(counts)), ]#Do not ever do this
 
-#now we have to restore data again as i have deleted 593rows
+#now we have to restore the original matrix again because duplicate rows were removed from the in-memory count object
 
 # get path of matrix file to read
 list.files(
